@@ -9,7 +9,7 @@ import pymongo
 
 app = Flask(__name__)
 
-myclient = pymongo.MongoClient("mongodb://192.168.99.100:27017/")
+myclient = pymongo.MongoClient("mongodb://db:27017/")
 
 mydb = myclient["moviedb"]
 movies = mydb["newmovies"]
@@ -18,8 +18,8 @@ movies_df = pd.DataFrame(list(movie_cursor))
 movies_df["id"] = pd.to_numeric(movies_df["id"])
 
 rating_db = mydb["ratings"]
-movie_cursor = rating_db.find()
-ratings_df = pd.DataFrame(list(movie_cursor))
+rating_cursor = rating_db.find()
+ratings_df = pd.DataFrame(list(rating_cursor))
 
 allm=movies_df
 
@@ -117,6 +117,7 @@ def rec():
 
                 s_image = img.split(",")
                 cache[title_f]={'title':title,'image':s_image}
+            
         except:
             title=["Movie not found"]
             s_image=["Movie not found"]
