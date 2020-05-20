@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html style="background-color: #181a1b;">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    .body{
+        background-color: rgb(34, 36, 38);
+        padding-bottom: 5px;
+        padding-top: 5ps;
+        margin-bottom: 4px;
+        color: white;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+    }
+
+    .button{
+        border-color: #575757;
+        background-color: #181a1b;
+        color: #e8e6e3;
+    }
+
+    .shadowbox {
+    width: 245px;
+    margin: 15px;
+    float: left;
+    border: 1px solid #333;
+    box-shadow: 10px 10px 5px #444;
+    padding: 10px 10px;
+    border-top-color: rgb(92, 92, 92);
+    border-right-color: rgb(92, 92, 92);
+    border-bottom-color: rgb(92, 92, 92);
+    border-left-color: rgb(92, 92, 92);
+    box-shadow: rgb(61, 64, 67) 10px 10px 5px;
+    background-image: linear-gradient(rgb(24, 26, 27), rgb(34, 36, 37) 40%, rgb(39, 41, 43));
+    color: rgb(232, 230, 227);
+    text-align: center;
+    }
+</style>
+
+</head>
+
+<body class = "body">
+
+<h1>Movie Recommender System</h1>
+
+<form action = "/rec" method = "GET">
+
+    <input class = "button" type="text" name="mname"></input>
+    <input class = "button" type="submit" value="Recommend">
+
+</form>
+
+<div class = "body">
+    {% if title %}
+        {% for i in title %}
+            {% set item_1 = title[loop.index-1] %}
+            {% set item_2 = image[loop.index-1] %}
+            <div class="shadowbox">
+                <div>
+                    <h4>{{ item_1 }}</h4>
+                </div> 
+                <div>
+                    <img src="{{ item_2 }}" width="250" height="400"/> </td>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+</body>
+</html>
