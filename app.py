@@ -60,9 +60,6 @@ class recoomender:
             if np.isnan(corr):
                 continue
             else:
-                avg= movies.loc[movies.original_title == movie, 'vote_average'].values[0]
-                if(int(avg)>6):
-                    corr+=0.9
                 if(corr>=0.1):
                     reviews.append((title, corr))
         reviews.sort(key=lambda tup:tup[1], reverse=True)
@@ -82,6 +79,7 @@ def rec():
 
     img=""
     title=[]
+    error=None
           
     url = "https://imdb8.p.rapidapi.com/title/auto-complete"
     
@@ -119,10 +117,11 @@ def rec():
                 cache[title_f]={'title':title,'image':s_image}
             
         except:
-            title=["Movie not found"]
-            s_image=["Movie not found"]
+            title=None
+            s_image=None
+            error="Movie not found"
 
-    return render_template("movies.html",title=title, image=s_image)
+    return render_template("movies.html",title=title, image=s_image, error=error)
 
 if __name__ == '__main__':
 

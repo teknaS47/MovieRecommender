@@ -13,8 +13,6 @@ db:
   image: mongo
   ports:
     - 27017:27017
-  # volumes:
-  #   - ./the-movies-dataset:/app/data
 
 db-seed:
   build: ./seed

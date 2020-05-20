@@ -52,6 +52,10 @@
 
 </form>
 
+{% if error %}
+<h1> {{ error }} </h1>
+{% endif %}
+
 <div class = "body">
     {% if title %}
         {% for i in title %}
